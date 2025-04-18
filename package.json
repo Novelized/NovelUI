@@ -1,0 +1,43 @@
+{
+  "name": "novelui",
+  "private": false,
+  "version": "0.1.0",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/novelui.umd.cjs",
+  "module": "./dist/novelui.js",
+  "exports": {
+    ".": {
+      "import": "./dist/novelui.js",
+      "require": "./dist/novelui.umd.cjs"
+    },
+    "./style.css": "./dist/style.css"
+  },
+  "scripts": {
+    "dev": "histoire dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "story:dev": "histoire dev",
+    "story:build": "histoire build"
+  },
+  "dependencies": {
+    "@floating-ui/vue": "^1.1.6",
+    "reka-ui": "^2.2.0",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@histoire/plugin-vue": "^1.0.0-alpha.2",
+    "@tailwindcss/vite": "^4.1.4",
+    "@vitejs/plugin-vue": "^5.2.2",
+    "histoire": "^1.0.0-alpha.2",
+    "tailwindcss": "^4.1.4",
+    "tailwindcss-animate": "^1.0.7",
+    "vite": "^6.3.1"
+  },
+  "peerDependencies": {
+    "vue": "^3.4.0"
+  },
+  "packageManager": "pnpm@10.8.1+sha512.c50088ba998c67b8ca8c99df8a5e02fd2ae2e2b29aaf238feaa9e124248d3f48f9fb6db2424949ff901cffbb5e0f0cc1ad6aedb602cd29450751d11c35023677"
+}
