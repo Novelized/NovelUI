@@ -67,12 +67,22 @@
   looks the same as it did with Tailwind CSS v3.
 */
 @layer base {
+  /* Rules for all elements */
   *,
   ::after,
   ::before,
   ::backdrop,
   ::file-selector-button {
+    /* Set default border color from v3 compatibility comment */
     border-color: var(--color-gray-200, currentColor);
+    /* Apply border-border and outline-ring from other blocks */
+    @apply border-border outline-ring/50;
+  }
+
+  /* Rules for body */
+  body {
+    @apply bg-background text-foreground min-h-screen;
+    background-color: #D9D9D9; /* Keep explicit bg from last block */
   }
 }
 
@@ -159,34 +169,4 @@
   --sidebar-ring: hsl(217.2 91.2% 59.8%);
   --sidebar:
     hsl(240 5.9% 10%);
-}
-
-@layer base {
-    * {
-        @apply border-border;
-    }
-
-    body {
-        @apply bg-background text-foreground;
-    }
-}
-
-/*
-  ---break---
-*/
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
-
-@layer base {
-    body {
-        @apply min-h-screen;
-        background-color: #D9D9D9;
-    }
 }
