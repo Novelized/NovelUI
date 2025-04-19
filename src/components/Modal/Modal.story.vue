@@ -2,10 +2,9 @@
 import { ref, reactive } from 'vue'
 import Modal from './Modal.vue'
 import Button from '../Button/Button.vue'
+import { DialogClose } from 'reka-ui'
 import { logEvent } from 'histoire/client'
 
-// Import global CSS for variables
-import '../../assets/css/main.css'
 
 const interactiveState = reactive({
   isOpen: false,
@@ -58,8 +57,12 @@ A reusable modal dialog component using Reka UI Dialog primitives and the custom
         </template>
         <p>This modal has custom actions in the footer slot and the default 'X' button is hidden.</p>
         <template #footer>
-           <Button variant="secondary" @click="logEvent('click cancel', $event)">Cancel</Button>
-           <Button variant="primary" @click="logEvent('click confirm', $event)">Confirm Action</Button>
+          <DialogClose asChild>
+            <Button variant="secondary" @click="logEvent('click cancel', $event)">Cancel</Button>
+          </DialogClose>
+          <DialogClose asChild>
+            <Button variant="primary" @click="logEvent('click confirm', $event)">Confirm Action</Button>
+          </DialogClose>
         </template>
       </Modal>
     </Variant>
