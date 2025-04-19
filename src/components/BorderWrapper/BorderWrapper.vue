@@ -8,11 +8,26 @@
     </div>
   </template>
   
-  <script setup lang="ts">
-  defineProps<{
-    wrapperClass?: string // Optional class for the wrapper
-    useDialogPadding?: boolean // Controls internal padding & height stretching
-  }>();
+  <script setup lang="js">
+  import { defineProps } from 'vue';
+
+  /**
+   * @typedef {Object} Props
+   * @property {string} [wrapperClass=''] Optional CSS class to apply to the main wrapper div.
+   * @property {boolean} [useDialogPadding=true] Controls whether the default internal padding and height stretching (`h-full` on the wrapper) are applied. Set to `false` to remove padding and rely on slotted content for height.
+   */
+
+  /** @type {Props} */
+  const props = defineProps({
+    wrapperClass: {
+      type: String,
+      default: '',
+    },
+    useDialogPadding: {
+      type: Boolean,
+      default: true,
+    },
+  });
   </script>
   
   <style scoped>
