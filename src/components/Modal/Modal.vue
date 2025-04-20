@@ -11,8 +11,10 @@
       <slot name="trigger" />
     </DialogTrigger>
     <DialogPortal>
-      <!-- Conditionally render overlay -->
-      <DialogOverlay v-if="props.showOverlay" class="modal-overlay" />
+      <!-- Conditionally render overlay with transition -->
+      <Transition name="fade">
+         <DialogOverlay v-if="props.showOverlay" class="modal-overlay" />
+      </Transition>
       <!-- Positioner now has transparent background -->
       <DialogContent class="modal-content-positioner">
         <!-- BorderWrapper provides the blur/outer border -->
@@ -151,11 +153,12 @@ const props = defineProps({
   flex: 1; /* Allow content to take space */
   overflow-y: auto; /* Allow scrolling if content overflows */
   border-radius: 1rem; /* Matches inner radius from BorderWrapper */
-  background-color: var(--card, white); 
-  border: 1px solid rgba(0, 0, 0, 0.1); 
-  box-shadow: 
+  /* Use consistent variables with fallbacks from your design system */
+  background-color: var(--card, var(--background-light, white));
+  border: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1));
+  box-shadow: var(--shadow-md,
     0 4px 6px rgba(0, 0, 0, 0.08),
-    0 10px 15px -3px rgba(0, 0, 0, 0.1); 
+    0 10px 15px -3px rgba(0, 0, 0, 0.1));
 }
 
 .modal-title {
@@ -195,6 +198,16 @@ const props = defineProps({
 .modal-close-button:hover {
   color: var(--foreground, black);
   background-color: var(--accent, #f0f0f0);
+}
+
+/* Transition for overlay */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease-out;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 
 /* Basic Animations */
